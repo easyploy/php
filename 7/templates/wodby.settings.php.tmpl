@@ -1,0 +1,29 @@
+<?php
+/**
+ * @file
+ * easyploy environment configuration for generic PHP project.
+ */
+
+{{ if getenv "EASYPLOY_HOSTS" }}{{ range jsonArray (getenv "EASYPLOY_HOSTS") }}
+$easyploy['hosts'][] = '{{ . }}';
+{{ end }}{{ end }}
+
+$easyploy['files_dir'] = '{{ getenv "FILES_DIR" }}';
+
+$easyploy['db']['host'] = '{{ getenv "DB_HOST" }}';
+$easyploy['db']['name'] = '{{ getenv "DB_NAME" }}';
+$easyploy['db']['username'] = '{{ getenv "DB_USER" }}';
+$easyploy['db']['password'] = '{{ getenv "DB_PASSWORD" }}';
+$easyploy['db']['driver'] = '{{ getenv "DB_DRIVER" }}';
+
+$easyploy['redis']['host'] = '{{ getenv "REDIS_HOST" }}';
+$easyploy['redis']['port'] = '{{ getenv "REDIS_PORT" "6379" }}';
+$easyploy['redis']['password'] = '{{ getenv "REDIS_PASSWORD" }}';
+
+$easyploy['varnish']['host'] = '{{ getenv "VARNISH_HOST" }}';
+$easyploy['varnish']['terminal_port'] = '{{ getenv "VARNISH_TERMINAL_PORT" "6082" }}';
+$easyploy['varnish']['secret'] = '{{ getenv "VARNISH_SECRET" }}';
+$easyploy['varnish']['version'] = '{{ getenv "VARNISH_VERSION" }}';
+
+$easyploy['memcached']['host'] = '{{ getenv "MEMCACHED_HOST" }}';
+$easyploy['memcached']['port'] = '{{ getenv "MEMCACHED_PORT" "11211" }}';
